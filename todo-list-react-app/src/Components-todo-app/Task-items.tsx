@@ -1,8 +1,26 @@
 import { useDispatch } from 'react-redux';
-import { completeTask, deleteTask } from '../redux/actions';
 
-const TaskItem = ({ task, index }) => {
+interface Task {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+interface TaskItemProps {
+  task: Task;
+  index: number;
+}
+
+const TaskItem: React.FC<TaskItemProps> = ({ task, index }) => {
   const dispatch = useDispatch();
+
+  const markComplete = () => {
+    dispatch({ type: 'TOGGLE_TASK_COMPLETION', payload: index });
+  };
+
+  const deleteTask = () => {
+    dispatch({ type: 'DELETE_TASK', payload: index });
+  };
 
   return (
     <div className="task-item border p-3 mb-3">
@@ -12,13 +30,13 @@ const TaskItem = ({ task, index }) => {
       <p>{task.description}</p>
       <div className="d-flex justify-content-between">
         <button
-          onClick={() => dispatch(completeTask(index))}
+          onClick={markComplete}
           className={`btn ${task.completed ? 'btn-secondary' : 'btn-success'}`}
         >
           {task.completed ? 'Completed' : 'Mark as Complete'}
         </button>
         <button
-          onClick={() => dispatch(deleteTask(index))}
+          onClick={deleteTask}
           className="btn btn-danger"
         >
           Delete
