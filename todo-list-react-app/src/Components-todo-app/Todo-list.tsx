@@ -1,8 +1,20 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import TaskItem from './Task-items'; // Ensure the correct path
 
-const TodoList = () => {
-  const tasks = useSelector((state) => state.tasks);
+// Define the Task type
+interface Task {
+  text: string;
+  completed: boolean;
+}
+
+// Define the structure of the Redux state
+interface RootState {
+  tasks: Task[];
+}
+
+const TodoList: React.FC = () => {
+  const tasks = useSelector((state: RootState) => state.tasks); // Correctly typed state
   const [newTask, setNewTask] = useState('');
   const dispatch = useDispatch();
 
@@ -25,10 +37,8 @@ const TodoList = () => {
         Add Task
       </button>
       <ul className="list-group">
-        {tasks.map((task, index) => (
-          <li key={index} className="list-group-item">
-            {task.text} <button>Complete</button> <button>Delete</button>
-          </li>
+        {tasks.map((task: Task, index: number) => (
+          <TaskItem key={index} task={task} index={index} />
         ))}
       </ul>
     </div>
@@ -36,3 +46,4 @@ const TodoList = () => {
 };
 
 export default TodoList;
+
