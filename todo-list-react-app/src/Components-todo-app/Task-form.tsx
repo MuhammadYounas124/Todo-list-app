@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 interface TaskFormProps {
@@ -5,13 +6,15 @@ interface TaskFormProps {
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
+const TaskForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      addTask({ title, description, completed: false });
+      addTask({ title, description, completed: false })
       setTitle('');
       setDescription('');
     }
