@@ -1,9 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { completeTask, deleteTask } from '../redux/actions';
+import React from 'react';
+interface TaskItemProps {
+  task: { title: string; description: string; completed: boolean };
+  completeTask: (index: number) => void;
+  deleteTask: (index: number) => void;
+}
 
-const TaskItem = ({ task, index }) => {
-  const dispatch = useDispatch();
-
+const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTask }) => {
   return (
     <div className="task-item border p-3 mb-3">
       <h5 style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
@@ -12,15 +14,12 @@ const TaskItem = ({ task, index }) => {
       <p>{task.description}</p>
       <div className="d-flex justify-content-between">
         <button
-          onClick={() => dispatch(completeTask(index))}
+          onClick={() => completeTask(index)}
           className={`btn ${task.completed ? 'btn-secondary' : 'btn-success'}`}
         >
           {task.completed ? 'Completed' : 'Mark as Complete'}
         </button>
-        <button
-          onClick={() => dispatch(deleteTask(index))}
-          className="btn btn-danger"
-        >
+        <button onClick={() => deleteTask(index)} className="btn btn-danger">
           Delete
         </button>
       </div>

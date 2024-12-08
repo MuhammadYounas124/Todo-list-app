@@ -1,16 +1,13 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
-const TodoList = () => {
-  const tasks = useSelector((state) => state.tasks);
-  const [newTask, setNewTask] = useState('');
-  const dispatch = useDispatch();
+import React from 'react';
 
-  const handleAddTask = () => {
-    dispatch({ type: 'ADD_TASK', payload: { text: newTask, completed: false } });
-    setNewTask('');
-  };
+interface TodoListProps {
+  tasks: Task[];
+  completeTask: (index: number) => void;
+  deleteTask: (index: number) => void;
+}
 
+const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) => {
   return (
     <div className="container mt-4">
       <h2>Todo List</h2>
@@ -25,14 +22,27 @@ const TodoList = () => {
         Add Task
       </button>
       <ul className="list-group">
-        {tasks.map((task, index) => (
-          <li key={index} className="list-group-item">
-            {task.text} <button>Complete</button> <button>Delete</button>
-          </li>
+        {tasks.map((task: Task, index: number) => (
+          <TaskItem key={index} task={task} index={index} />
         ))}
       </ul>
+    <div className="task-list">
+      {tasks.length > 0 ? (
+        tasks.map((task, index) => (
+          <TaskItem
+            key={index}
+            task={task} // Passing the task object here
+            index={index}
+            completeTask={completeTask}
+            deleteTask={deleteTask}
+          />
+        ))
+      ) : (
+        <p>No tasks available. Add some tasks!</p>
+      )}
     </div>
   );
 };
 
 export default TodoList;
+
