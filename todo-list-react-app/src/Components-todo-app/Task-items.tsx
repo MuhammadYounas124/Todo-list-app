@@ -30,3 +30,4 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTa
 };
 
 export default TaskItem;
+
