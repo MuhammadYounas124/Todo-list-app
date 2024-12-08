@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+
 import Taskform from './Components-todo-app/Task-form';
 import TodoList from './Components-todo-app/Todo-list';
 
