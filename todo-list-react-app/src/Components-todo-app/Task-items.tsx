@@ -1,14 +1,6 @@
 import React from 'react';
-
-interface Task {
-  title: string;
-  description: string;
-  completed: boolean;
-}
-
 interface TaskItemProps {
-  task: Task; // Destructure task here
-  index: number;
+  task: { title: string; description: string; completed: boolean };
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
 }

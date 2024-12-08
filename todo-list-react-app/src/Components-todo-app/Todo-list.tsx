@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface TodoListProps {
-  tasks: { title: string; description: string; completed: boolean }[];
+  tasks: Task[];
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
 }
@@ -31,7 +31,7 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) 
         tasks.map((task, index) => (
           <TaskItem
             key={index}
-            task={task}
+            task={task} // Passing the task object here
             index={index}
             completeTask={completeTask}
             deleteTask={deleteTask}
