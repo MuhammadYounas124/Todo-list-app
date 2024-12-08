@@ -1,19 +1,20 @@
-// src/components/TaskForm.tsx
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../redux/actions';  // Import addTask action
 
+import React, { useState } from 'react';
+
+interface TaskFormProps {
+  addTask: (task: { title: string; description: string; completed: boolean }) => void;
+}
+
+const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
 const TaskForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const dispatch = useDispatch();
 
-  // Handle form submission
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      // Dispatch the action to add the task
-      dispatch(addTask({ title, description, completed: false }));
+      addTask({ title, description, completed: false })
       setTitle('');
       setDescription('');
     }
