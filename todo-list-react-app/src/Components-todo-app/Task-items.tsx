@@ -7,7 +7,7 @@ interface Task {
 }
 
 interface TaskItemProps {
-  task: Task; // Destructure task here
+  task: Task;
   index: number;
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
