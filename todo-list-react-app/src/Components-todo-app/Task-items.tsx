@@ -1,7 +1,13 @@
 import React from 'react';
 
+interface Task {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
 interface TaskItemProps {
-  task: { title: string; description: string; completed: boolean };
+  task: Task; // Destructure task here
   index: number;
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
@@ -30,4 +36,3 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTa
 };
 
 export default TaskItem;
-
