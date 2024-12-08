@@ -1,28 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import TaskItem from './Task-items'; // Ensure the correct path
 
-// Define the Task type
-interface Task {
-  text: string;
-  completed: boolean;
+import React from 'react';
+
+interface TodoListProps {
+  tasks: { title: string; description: string; completed: boolean }[];
+  completeTask: (index: number) => void;
+  deleteTask: (index: number) => void;
 }
 
-// Define the structure of the Redux state
-interface RootState {
-  tasks: Task[];
-}
-
-const TodoList: React.FC = () => {
-  const tasks = useSelector((state: RootState) => state.tasks); // Correctly typed state
-  const [newTask, setNewTask] = useState('');
-  const dispatch = useDispatch();
-
-  const handleAddTask = () => {
-    dispatch({ type: 'ADD_TASK', payload: { text: newTask, completed: false } });
-    setNewTask('');
-  };
-
+const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) => {
   return (
     <div className="container mt-4">
       <h2>Todo List</h2>
@@ -41,6 +26,20 @@ const TodoList: React.FC = () => {
           <TaskItem key={index} task={task} index={index} />
         ))}
       </ul>
+    <div className="task-list">
+      {tasks.length > 0 ? (
+        tasks.map((task, index) => (
+          <TaskItem
+            key={index}
+            task={task}
+            index={index}
+            completeTask={completeTask}
+            deleteTask={deleteTask}
+          />
+        ))
+      ) : (
+        <p>No tasks available. Add some tasks!</p>
+      )}
     </div>
   );
 };
