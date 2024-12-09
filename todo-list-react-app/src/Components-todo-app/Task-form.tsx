@@ -1,16 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../redux/actions';
 
 const TaskForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const dispatch = useDispatch();
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      dispatch(addTask({ title, description, completed: false }));
+
       setTitle('');
       setDescription('');
     }
