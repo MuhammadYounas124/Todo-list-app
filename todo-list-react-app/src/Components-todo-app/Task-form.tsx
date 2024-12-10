@@ -1,19 +1,13 @@
+import { useState } from 'react';
 
-
-import React, { useState } from 'react';
-
-interface TaskformProps {
-  addTask: (task: { title: string; description: string; completed: boolean }) => void;
-}
-
-const Taskform: React.FC<TaskformProps> = ({ addTask }) => {
+const TaskForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      addTask({ title, description, completed: false });
+
       setTitle('');
       setDescription('');
     }
@@ -47,4 +41,4 @@ const Taskform: React.FC<TaskformProps> = ({ addTask }) => {
   );
 };
 
-export default Taskform;
+export default TaskForm;
