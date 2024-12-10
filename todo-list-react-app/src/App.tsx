@@ -1,10 +1,10 @@
 
-import React, { useState } from "react";
-import Taskform from "./Components-todo-app/Task-form";
-import TodoList from "./Components-todo-app/todo-list";
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Components-todo-app/login';
 import Registration from './Components-todo-app/Registeration-form';
+import Taskform from './Components-todo-app/Task-form';
+import TodoList from './Components-todo-app/todo-list';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState([
@@ -51,4 +51,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
