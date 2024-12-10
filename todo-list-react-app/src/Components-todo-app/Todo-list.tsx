@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
 
 const TodoList = () => {
-  const tasks = useSelector((state) => state.tasks);
+  //const tasks = useSelector((state) => state.tasks);
   const [newTask, setNewTask] = useState('');
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const handleAddTask = () => {
-    dispatch({ type: 'ADD_TASK', payload: { text: newTask, completed: false } });
+    //dispatch({ type: 'ADD_TASK', payload: { text: newTask, completed: false } });
     setNewTask('');
   };
 
@@ -25,11 +25,11 @@ const TodoList = () => {
         Add Task
       </button>
       <ul className="list-group">
-        {tasks.map((task, index) => (
+        {/* {tasks.map((task, index) => (
           <li key={index} className="list-group-item">
             {task.text} <button>Complete</button> <button>Delete</button>
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
