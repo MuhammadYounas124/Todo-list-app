@@ -1,18 +1,21 @@
 import React from 'react';
-import TaskItem from './task-item'; // Ensure the correct path
+import TaskItem from './task-item'; // Ensure this path is correct
 
+// Define Task type
 interface Task {
   title: string;
   description: string;
   completed: boolean;
 }
 
+// Define TodoListProps interface
 interface TodoListProps {
   tasks: Task[];
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
 }
 
+// Functional component for TodoList
 const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) => {
   return (
     <div className="container mt-4">
@@ -21,11 +24,11 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) 
         {tasks.length > 0 ? (
           tasks.map((task, index) => (
             <TaskItem
-              key={index}
-              task={task}
-              index={index}
-              completeTask={completeTask}
-              deleteTask={deleteTask}
+              key={index} // Required for React list rendering
+              task={task} // Pass the task object
+              index={index} // Pass the task's index
+              completeTask={completeTask} // Pass the function to mark as complete
+              deleteTask={deleteTask} // Pass the function to delete
             />
           ))
         ) : (
@@ -39,3 +42,4 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) 
 };
 
 export default TodoList;
+
