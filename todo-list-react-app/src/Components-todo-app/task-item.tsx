@@ -1,13 +1,13 @@
 import React from 'react';
 
-// Define Task type
+
 interface Task {
   title: string;
   description: string;
   completed: boolean;
 }
 
-// Define TaskItemProps interface
+
 interface TaskItemProps {
   task: Task;
   index: number;
@@ -15,7 +15,7 @@ interface TaskItemProps {
   deleteTask: (index: number) => void;
 }
 
-// Functional component for TaskItem
+
 const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTask }) => {
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
