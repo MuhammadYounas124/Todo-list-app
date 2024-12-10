@@ -1,10 +1,12 @@
 import React from 'react';
 
+
 interface Task {
   title: string;
   description: string;
   completed: boolean;
 }
+
 
 interface TaskItemProps {
   task: Task;
@@ -12,6 +14,7 @@ interface TaskItemProps {
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
 }
+
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTask }) => {
   return (
