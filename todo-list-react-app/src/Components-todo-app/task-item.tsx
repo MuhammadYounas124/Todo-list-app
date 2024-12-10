@@ -1,66 +1,43 @@
-import { useState } from 'react';
+import React from 'react';
 
-const TodoList = () => {
-  const [newTask, setNewTask] = useState('');
-  const [tasks, setTasks] = useState<{ text: string; completed: boolean }[]>([]);
+// Define Task type
+interface Task {
+  title: string;
+  description: string;
+  completed: boolean;
+}
 
-  const handleAddTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, { text: newTask, completed: false }]);
-      setNewTask('');
-    }
-  };
+// Define TaskItemProps interface
+interface TaskItemProps {
+  task: Task;
+  index: number;
+  completeTask: (index: number) => void;
+  deleteTask: (index: number) => void;
+}
 
-  const handleCompleteTask = (index: number) => {
-    const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-  };
-
-  const handleDeleteTask = (index: number) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
-  };
-
+// Functional component for TaskItem
+const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTask }) => {
   return (
-    <div className="container mt-4">
-      <h2>Todo List</h2>
-      <input
-        className="form-control mb-3"
-        type="text"
-        placeholder="New Task"
-        value={newTask}
-        onChange={(e) => setNewTask(e.target.value)}
-      />
-      <button className="btn btn-primary mb-3" onClick={handleAddTask}>
-        Add Task
-      </button>
-      <ul className="list-group">
-        {tasks.map((task, index) => (
-          <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-              {task.text}
-            </span>
-            <div>
-              <button
-                className="btn btn-success btn-sm me-2"
-                onClick={() => handleCompleteTask(index)}
-              >
-                {task.completed ? 'Undo' : 'Complete'}
-              </button>
-              <button
-                className="btn btn-danger btn-sm"
-                onClick={() => handleDeleteTask(index)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <li className="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <h5 style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+          {task.title}
+        </h5>
+        <p>{task.description}</p>
+      </div>
+      <div>
+        <button
+          className={`btn ${task.completed ? 'btn-secondary' : 'btn-success'} me-2`}
+          onClick={() => completeTask(index)}
+        >
+          {task.completed ? 'Completed' : 'Mark Complete'}
+        </button>
+        <button className="btn btn-danger" onClick={() => deleteTask(index)}>
+          Delete
+        </button>
+      </div>
+    </li>
   );
 };
 
-export default TodoList;
+export default TaskItem;
