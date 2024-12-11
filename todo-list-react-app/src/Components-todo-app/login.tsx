@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "admin-lte/dist/css/adminlte.min.css";
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
