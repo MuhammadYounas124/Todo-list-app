@@ -11,7 +11,7 @@ const Registration = () => {
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Registration Successful');
-    navigate('/');
+    navigate('/login');
   };
 
   return (

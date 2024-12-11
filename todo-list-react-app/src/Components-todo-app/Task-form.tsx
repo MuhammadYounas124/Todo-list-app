@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import "admin-lte/dist/css/adminlte.min.css";
 
-const TaskForm = ({ addTask }: { addTask: (task: { title: string; description: string; file?: File | null }) => void }) => {
+const TaskForm = ({ setTasks }: { setTasks: React.Dispatch<React.SetStateAction<any>> }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState<File | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      addTask({ title, description, file });
+      setTasks((prevTasks: any) => [
+        ...prevTasks,
+        { title, description, completed: false }
+      ]);
       setTitle('');
       setDescription('');
-      setFile(null);
-    } else {
-      alert('Please fill in all fields');
     }
   };
 
@@ -37,13 +36,6 @@ const TaskForm = ({ addTask }: { addTask: (task: { title: string; description: s
           onChange={(e) => setDescription(e.target.value)}
           className="form-control"
           required
-        />
-      </div>
-      <div className="mb-3">
-        <input
-          type="file"
-          onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
-          className="form-control"
         />
       </div>
       <button type="submit" className="btn btn-primary">
