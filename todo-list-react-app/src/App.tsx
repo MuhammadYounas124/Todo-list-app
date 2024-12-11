@@ -6,12 +6,14 @@ import TaskForm from './Components-todo-app/Task-form';
 import TodoList from './Components-todo-app/todo-list';
 import "admin-lte/dist/css/adminlte.min.css";
 
+
 interface Task {
   title: string;
   description: string;
   completed: boolean;
   file?: File | null;
 }
+
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([
@@ -92,5 +94,4 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 

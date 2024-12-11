@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import "admin-lte/dist/css/adminlte.min.css";
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (e: { preventDefault: () => void; }) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (email === 'test@example.com' && password === 'password') {
-      dispatch({ type: 'LOGIN', payload: { email } });
       navigate('/todo');
     } else {
       alert('Invalid credentials');

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import "admin-lte/dist/css/adminlte.min.css";
 
 const TaskForm = ({ addTask }: { addTask: (task: { title: string; description: string; file?: File | null }) => void }) => {
   const [title, setTitle] = useState('');
