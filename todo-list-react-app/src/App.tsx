@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
-import Taskform from "./Components-todo-app/Task-form";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import TaskForm from "./Components-todo-app/Task-form";
 import TodoList from "./Components-todo-app/todo-list";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Components-todo-app/login';
 import Registration from './Components-todo-app/Registeration-form';
 import "admin-lte/dist/css/adminlte.min.css";
@@ -47,7 +46,7 @@ const App: React.FC = () => {
             path="/todo"
             element={
               <>
-                <Taskform />
+                <TaskForm setTasks={setTasks} />
                 <TodoList tasks={tasks} completeTask={completeTask} deleteTask={deleteTask} />
               </>
             }

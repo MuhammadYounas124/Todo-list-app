@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import "admin-lte/dist/css/adminlte.min.css";
 
-const TaskForm = () => {
+const TaskForm = ({ setTasks }: { setTasks: React.Dispatch<React.SetStateAction<any>> }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-
+      setTasks((prevTasks: any) => [
+        ...prevTasks,
+        { title, description, completed: false }
+      ]);
       setTitle('');
       setDescription('');
     }
@@ -43,3 +46,4 @@ const TaskForm = () => {
 };
 
 export default TaskForm;
+

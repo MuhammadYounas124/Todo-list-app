@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import "admin-lte/dist/css/adminlte.min.css";
 
@@ -7,17 +6,12 @@ const Registration = () => {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleRegister = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    dispatch({
-      type: 'REGISTER',
-      payload: { displayName, email }
-    });
     alert('Registration Successful');
-    navigate('/');
+    navigate('/login');
   };
 
   return (
