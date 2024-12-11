@@ -8,7 +8,7 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = (e: { preventDefault: () => void; }) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Registration Successful');
     navigate('/login');
@@ -61,3 +61,4 @@ const Registration = () => {
 };
 
 export default Registration;
+
