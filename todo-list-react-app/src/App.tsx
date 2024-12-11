@@ -5,6 +5,8 @@ import Login from './Components-todo-app/login';
 import Registration from './Components-todo-app/Registeration-form';
 import Taskform from './Components-todo-app/Task-form';
 import TodoList from './Components-todo-app/todo-list';
+import "admin-lte/dist/css/adminlte.min.css";
+
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState([
