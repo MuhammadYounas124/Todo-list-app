@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "admin-lte/dist/css/adminlte.min.css";
 
+interface LoginProps {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const Login = () => {
+const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,7 +14,8 @@ const Login = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (email === 'test@example.com' && password === 'password') {
-      navigate('/todo');
+      setIsLoggedIn(true);  // Set login state to true
+      navigate('/todo');    // Navigate to Todo screen
     } else {
       alert('Invalid credentials');
     }
@@ -56,3 +60,4 @@ const Login = () => {
 };
 
 export default Login;
+
