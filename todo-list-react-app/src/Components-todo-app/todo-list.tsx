@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskItem from './task-item'; // Ensure this path is correct
-
+import "admin-lte/dist/css/adminlte.min.css";
 // Define Task interface
 interface Task {
   title: string;

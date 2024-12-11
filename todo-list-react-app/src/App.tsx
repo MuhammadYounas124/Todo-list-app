@@ -5,6 +5,7 @@ import TodoList from "./Components-todo-app/todo-list";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Components-todo-app/login';
 import Registration from './Components-todo-app/Registeration-form';
+import "admin-lte/dist/css/adminlte.min.css";
 
 // Define the Task interface
 interface Task {
