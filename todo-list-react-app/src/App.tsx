@@ -19,9 +19,9 @@ const App: React.FC = () => {
     { title: 'Sample Task 1', description: 'Description 1', completed: false },
     { title: 'Sample Task 2', description: 'Description 2', completed: false },
   ]);
-  
+
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
-  
+
   const completeTask = (index: number) => {
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
@@ -35,17 +35,18 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="container mt-4">
-        <h1>Task Manager</h1>
+      <div className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center">
+        <h1 className="text-center mb-4">Task Manager</h1>
 
         {/* Navigation Links */}
         { !isLoggedIn && (
-          <nav>
-            <Link to="/login" className="btn btn-primary me-2">Login</Link>
+          <nav className="mb-4">
+            <Link to="/login" className="btn btn-primary me-3">Login</Link>
             <Link to="/register" className="btn btn-secondary">Register</Link>
           </nav>
         )}
 
+        {/* Routes */}
         <Routes>
           {/* Route for Login */}
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />

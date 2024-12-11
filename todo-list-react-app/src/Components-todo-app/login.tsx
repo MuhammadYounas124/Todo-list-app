@@ -1,63 +1,49 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "admin-lte/dist/css/adminlte.min.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email === 'test@example.com' && password === 'password') {
-      setIsLoggedIn(true);  // Set login state to true
-      navigate('/todo');    // Navigate to Todo screen
+  const handleLogin = () => {
+    // Dummy authentication check (you can replace this with a real API call)
+    if (email === "jun123@gmail.com" && password === "password123") {
+      setIsLoggedIn(true);
+      navigate("/todo"); // Redirect to the todo page after successful login
     } else {
-      alert('Invalid credentials');
+      setError("Invalid credentials");
     }
   };
 
   return (
-    <div className="login-box">
-      <div className="card card-outline card-primary">
-        <div className="card-header text-center">
-          <h2>Login</h2>
-        </div>
-        <div className="card-body">
-          <form onSubmit={handleLogin}>
-            <div className="input-group mb-3">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="input-group mb-3">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <button className="btn btn-primary btn-block" type="submit">
-              Log In
-            </button>
-          </form>
-        </div>
-      </div>
+    <div className="login-container">
+      <h2>Login</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="form-control"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="form-control"
+      />
+      {error && <div className="text-danger">{error}</div>}
+      <button onClick={handleLogin} className="btn btn-primary">Log In</button>
     </div>
   );
 };
 
 export default Login;
+
 
