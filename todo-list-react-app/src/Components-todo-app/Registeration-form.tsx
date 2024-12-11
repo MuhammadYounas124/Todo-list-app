@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "admin-lte/dist/css/adminlte.min.css";
 
-
 const Registration = () => {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
