@@ -2,21 +2,18 @@ import React from 'react';
 import TaskItem from './task-item'; // Ensure this path is correct
 import "admin-lte/dist/css/adminlte.min.css";
 
-// Define Task interface
 interface Task {
   title: string;
   description: string;
   completed: boolean;
 }
 
-// Define TodoListProps interface
 interface TodoListProps {
   tasks: Task[];
   completeTask: (index: number) => void;
   deleteTask: (index: number) => void;
 }
 
-// Functional component for TodoList
 const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) => {
   return (
     <div className="container mt-4">
@@ -43,4 +40,3 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) 
 };
 
 export default TodoList;
-

@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import TaskForm from "./Components-todo-app/Task-form";
 import TodoList from "./Components-todo-app/todo-list";
 import Login from './Components-todo-app/login';
@@ -19,7 +19,9 @@ const App: React.FC = () => {
     { title: 'Sample Task 1', description: 'Description 1', completed: false },
     { title: 'Sample Task 2', description: 'Description 2', completed: false },
   ]);
-
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  
   const completeTask = (index: number) => {
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
@@ -35,21 +37,32 @@ const App: React.FC = () => {
     <Router>
       <div className="container mt-4">
         <h1>Task Manager</h1>
-        <nav>
-          <Link to="/login" className="btn btn-primary me-2">Login</Link>
-          <Link to="/register" className="btn btn-secondary">Register</Link>
-        </nav>
+
+        {/* Navigation Links */}
+        { !isLoggedIn && (
+          <nav>
+            <Link to="/login" className="btn btn-primary me-2">Login</Link>
+            <Link to="/register" className="btn btn-secondary">Register</Link>
+          </nav>
+        )}
 
         <Routes>
-          <Route path="/login" element={<Login />} />
+          {/* Route for Login */}
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          {/* Route for Registration */}
           <Route path="/register" element={<Registration />} />
+          {/* Route for Todo (after login) */}
           <Route
             path="/todo"
             element={
-              <>
-                <TaskForm setTasks={setTasks} />
-                <TodoList tasks={tasks} completeTask={completeTask} deleteTask={deleteTask} />
-              </>
+              isLoggedIn ? (
+                <>
+                  <TaskForm setTasks={setTasks} />
+                  <TodoList tasks={tasks} completeTask={completeTask} deleteTask={deleteTask} />
+                </>
+              ) : (
+                <div>Please login to access the tasks.</div>
+              )
             }
           />
         </Routes>

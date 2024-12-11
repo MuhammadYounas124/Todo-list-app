@@ -11,7 +11,7 @@ const Registration = () => {
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Registration Successful');
-    navigate('/login');
+    navigate('/login');  // Navigate to login after successful registration
   };
 
   return (
@@ -61,4 +61,6 @@ const Registration = () => {
 };
 
 export default Registration;
+
+
 
