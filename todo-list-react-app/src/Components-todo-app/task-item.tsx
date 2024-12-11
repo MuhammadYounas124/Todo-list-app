@@ -1,13 +1,12 @@
 import React from 'react';
 import "admin-lte/dist/css/adminlte.min.css";
 
-
 interface Task {
+  file: any;
   title: string;
   description: string;
   completed: boolean;
 }
-
 
 interface TaskItemProps {
   task: Task;
@@ -16,15 +15,15 @@ interface TaskItemProps {
   deleteTask: (index: number) => void;
 }
 
-
 const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTask }) => {
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center">
+    <li className={`list-group-item d-flex justify-content-between align-items-center ${task.completed ? 'bg-success text-white' : ''}`}>
       <div>
         <h5 style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
           {task.title}
         </h5>
         <p>{task.description}</p>
+        {task.file && <p>Attached: {task.file.name}</p>}
       </div>
       <div>
         <button

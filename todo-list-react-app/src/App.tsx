@@ -15,6 +15,13 @@ interface Task {
 }
 
 
+// Define the Task interface
+interface Task {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([
     { title: 'Sample Task 1', description: 'Description 1', completed: false },
@@ -94,4 +101,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
