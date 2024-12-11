@@ -6,8 +6,15 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Components-todo-app/login';
 import Registration from './Components-todo-app/Registeration-form';
 
+// Define the Task interface
+interface Task {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<Task[]>([
     { title: 'Sample Task 1', description: 'Description 1', completed: false },
     { title: 'Sample Task 2', description: 'Description 2', completed: false },
   ]);
@@ -51,4 +58,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 

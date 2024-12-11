@@ -1,7 +1,7 @@
 import React from 'react';
 import TaskItem from './task-item'; // Ensure this path is correct
 
-// Define Task type
+// Define Task interface
 interface Task {
   title: string;
   description: string;
@@ -42,4 +42,3 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, completeTask, deleteTask }) 
 };
 
 export default TodoList;
-
