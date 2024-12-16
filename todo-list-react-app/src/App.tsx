@@ -1,68 +1,45 @@
-
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+// App.tsx
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import TaskForm from "./Components-todo-app/Task-form";
 import TodoList from "./Components-todo-app/todo-list";
-import Login from './Components-todo-app/login';
-import Registration from './Components-todo-app/Registeration-form';
-import "admin-lte/dist/css/adminlte.min.css";
-
-// Define the Task interface
-interface Task {
-  title: string;
-  description: string;
-  completed: boolean;
-}
+import Login from "./Components-todo-app/login";
+import Registration from "./Components-todo-app/Registeration-form";
+import { logout } from "./Redux/Redux-action";
 
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    { title: 'Sample Task 1', description: 'Description 1', completed: false },
-    { title: 'Sample Task 2', description: 'Description 2', completed: false },
-  ]);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: any) => state);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
-
-  const completeTask = (index: number) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
-  };
-
-  const deleteTask = (index: number) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
     <Router>
-      <div className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center">
-        <h1 className="text-center mb-4">Task Manager</h1>
-
-        {/* Navigation Links */}
-        { !isLoggedIn && (
-          <nav className="mb-4">
-            <Link to="/login" className="btn btn-primary me-3">Login</Link>
-            <Link to="/register" className="btn btn-secondary">Register</Link>
-          </nav>
+      <div>
+        <h1>Task Manager</h1>
+        {!user ? (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        ) : (
+          <button onClick={handleLogout}>Logout</button>
         )}
-
-        {/* Routes */}
         <Routes>
-          {/* Route for Login */}
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          {/* Route for Registration */}
+          <Route path="/login" element={<Login setIsLoggedIn={() => {}} />} />
           <Route path="/register" element={<Registration />} />
-          {/* Route for Todo (after login) */}
           <Route
             path="/todo"
             element={
-              isLoggedIn ? (
+              user ? (
                 <>
-                  <TaskForm setTasks={setTasks} />
-                  <TodoList tasks={tasks} completeTask={completeTask} deleteTask={deleteTask} />
+                  <TaskForm />
+                  <TodoList />
                 </>
               ) : (
-                <div>Please login to access the tasks.</div>
+                <div>Please log in</div>
               )
             }
           />

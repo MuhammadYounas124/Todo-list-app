@@ -1,17 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "admin-lte/dist/css/adminlte.min.css";
+// Registration.tsx
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../Redux/Redux-action";
 
 const Registration = () => {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+    const user = { displayName, email, password };
+    dispatch(register(user));
     alert('Registration Successful');
-    navigate('/login');  // Navigate to login after successful registration
+    navigate('/login');
   };
 
   return (
