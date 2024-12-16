@@ -1,9 +1,8 @@
-// Registration.tsx
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../Redux/Redux-action";
+import "admin-lte/dist/css/adminlte.min.css";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const [displayName, setDisplayName] = useState('');
@@ -21,12 +20,12 @@ const Registration = () => {
   };
 
   return (
-    <div className="register-box">
-      <div className="card">
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card shadow-lg p-4" style={{ width: '400px' }}>
         <div className="card-body">
-          <h2>Register</h2>
+          <h2 className="text-center mb-4">Register</h2>
           <form onSubmit={handleRegister}>
-            <div className="input-group mb-3">
+            <div className="mb-3">
               <input
                 type="text"
                 className="form-control"
@@ -36,7 +35,7 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className="input-group mb-3">
+            <div className="mb-3">
               <input
                 type="email"
                 className="form-control"
@@ -46,7 +45,7 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className="input-group mb-3">
+            <div className="mb-3">
               <input
                 type="password"
                 className="form-control"
@@ -56,7 +55,7 @@ const Registration = () => {
                 required
               />
             </div>
-            <button className="btn btn-primary btn-block" type="submit">
+            <button className="btn btn-primary btn-block w-100" type="submit">
               Register
             </button>
           </form>
@@ -66,7 +65,9 @@ const Registration = () => {
   );
 };
 
+
 export default Registration;
+
 
 
 
