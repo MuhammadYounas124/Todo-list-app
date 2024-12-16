@@ -1,5 +1,9 @@
+// Login.tsx
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../Redux/Redux-action";
 
 interface LoginProps {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,10 +14,11 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
-    // Dummy authentication check (you can replace this with a real API call)
     if (email === "jun123@gmail.com" && password === "password123") {
+      dispatch(login({ email }));
       setIsLoggedIn(true);
       navigate("/todo"); // Redirect to the todo page after successful login
     } else {
@@ -45,5 +50,6 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
 };
 
 export default Login;
+
 
 
