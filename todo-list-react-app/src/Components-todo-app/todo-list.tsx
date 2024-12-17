@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, toggleTask } from "../Redux/Redux-action";
+// deleteTask and toggleTask are imported to handle task deletion and toggling completion status.
 import "admin-lte/dist/css/adminlte.min.css";
 
 const TodoList: React.FC = () => {
-  const tasks = useSelector((state: any) => state.tasks);
-  const dispatch = useDispatch();
+  const tasks = useSelector((state: any) => state.tasks); // useSelector: Retrieves the tasks state from the Redux store.
+  const dispatch = useDispatch(); // useDispatch: Dispatches actions to the Redux store.
 
   return (
     <div className="container mt-4">
@@ -21,7 +22,9 @@ const TodoList: React.FC = () => {
             >
               <span
                 style={{
-                  textDecoration: task.completed ? "line-through" : "none",
+                  textDecoration: task.completed ? "line-through" : "none", 
+                  //  Displayed as text with a line-through decoration if the task is marked completed:
+
                 }}
                 className="flex-grow-1"
               >
@@ -32,7 +35,7 @@ const TodoList: React.FC = () => {
                   onClick={() => dispatch(toggleTask(index))}
                   className={`btn btn-sm ${
                     task.completed ? "btn-warning" : "btn-success"
-                  } me-2`}
+                  } me-2`} // Toggles task status (completed/active) by dispatching toggleTask with the task index.
                 >
                   {task.completed ? "Undo" : "Complete"}
                 </button>

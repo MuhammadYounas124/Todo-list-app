@@ -2,16 +2,16 @@ import React from 'react';
 import "admin-lte/dist/css/adminlte.min.css";
 
 interface Task {
-  title: string;
-  description: string;
-  completed: boolean;
+  title: string; // title (string): The task title.
+  description: string; // description (string): The task description.
+  completed: boolean; // completed (boolean): Whether the task is completed.
 }
 
 interface TaskItemProps {
-  task: Task;
-  index: number;
-  completeTask: (index: number) => void;
-  deleteTask: (index: number) => void;
+  task: Task; // task (Task): The task object containing title, description, and status.
+  index: number; // index (number): Position/index of the task in the task list.
+  completeTask: (index: number) => void; // completeTask (function): A callback to mark the task as complete.
+  deleteTask: (index: number) => void; // deleteTask (function): A callback to delete the task.
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, index, completeTask, deleteTask }) => {

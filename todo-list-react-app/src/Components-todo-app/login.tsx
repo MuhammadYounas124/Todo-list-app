@@ -12,16 +12,18 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Uses useNavigate from react-router-dom to redirect the user after a successful login.
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    if (email === "jun123@gmail.com" && password === "password123") {
-      dispatch(login({ email }));
-      setIsLoggedIn(true);
+    if (email === "jun123@gmail.com" && password === "password123") { // email and password manage input values.
+      dispatch(login({ email })); // Checks if the entered credentials match predefined values
+      // (jun123@gmail.com and password123).
+      setIsLoggedIn(true); // If valid, dispatches a login action, updates login state (setIsLoggedIn), 
+      //and navigates to the /todo page.
       navigate("/todo"); // Redirect to the todo page after successful login
     } else {
-      setError("Invalid credentials");
+      setError("Invalid credentials"); // error shows an error message if credentials are invalid.
     }
   };
 
