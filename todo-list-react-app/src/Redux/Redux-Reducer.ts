@@ -17,10 +17,13 @@ const initialState: State = {
   tasks: [],       // tasks is an empty array.
 };
 
-const rootReducer = (state: State = initialState, action: any): State => {
+const rootReducer = (state: State = initialState, action: any): State => { 
+  // The current state of the application. It defaults to initialState if no state is provided.
+  //An object that describes the change to be made. 
+  // It has a type property (mandatory) and may have additional data in a payload property.
   switch (action.type) {             // Uses a switch statement to update the state based on the action type.
-    case LOGIN:
-      return { ...state, user: action.payload };
+    case LOGIN: //Logs in a user
+      return { ...state, user: action.payload }; // Updates the user field in the state with the data from action.payload.
     case LOGOUT:
       return { ...state, user: null };
     case REGISTER:

@@ -11,26 +11,27 @@ export const login = (user: any) => ({
   payload: user,     // payload (optional): Data sent with the action.
 });
 
-export const logout = () => ({
+export const logout = () => ({ 
   type: LOGOUT,
 });
 
-export const register = (user: any) => ({
-  type: REGISTER,
-  payload: user,
+export const register = (user: any) => ({ // Purpose: Represents registering a new user.
+  type: REGISTER,  //  Identifies this action.
+  payload: user,  // Contains the user data (user) required for registration.
+   //user can include information such as a username, email, password, etc.
 });
 
-export const addTask = (task: any) => ({
-  type: ADD_TASK,
-  payload: task,
+export const addTask = (task: any) => ({ // Adds a new task to the task list.
+  type: ADD_TASK, // Identifies this action.
+  payload: task, // Contains the task object to be added.
 });
 
 export const deleteTask = (index: number) => ({
-  type: DELETE_TASK,
-  payload: index,
+  type: DELETE_TASK, // Identifies this action.
+  payload: index, // The index (number) of the task to be deleted from the task list.
 });
 
-export const toggleTask = (index: number) => ({
-  type: TOGGLE_TASK,
-  payload: index,
+export const toggleTask = (index: number) => ({ //  toggle means switching between two states or conditions.
+  type: TOGGLE_TASK, // Identifies this action.
+  payload: index, // The index (number) of the task to toggle.
 });
