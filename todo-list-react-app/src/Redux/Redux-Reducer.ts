@@ -32,8 +32,7 @@ const rootReducer = (state: State = initialState, action: any): State => {
     case TOGGLE_TASK:
       return {
         ...state, // Returns a new state while ensuring immutability (using ...state and array methods like map and filter)
-        tasks: state.tasks.map((task, i) =>
-          i === action.payload ? { ...task, completed: !task.completed } : task
+        tasks: state.tasks.map((task, i) => i === action.payload ? { ...task, completed: !task.completed } : task
         ),
       };
     default:
